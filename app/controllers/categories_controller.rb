@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to categories_path
+      redirect_to categories_path(@category)
     else
       @category = Category.new
       render :new, status: :unprocessable_entity
@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to categories_path
+    redirect_to categories_path, status: :see_other
   end
 
   private

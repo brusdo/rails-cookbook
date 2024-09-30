@@ -42,3 +42,8 @@ salad = Recipe.create(
   image_url: "https://www.bbcgoodfood.com/recipes/collection/salad-recipes",
   rating: 6.5
 )
+
+
+# Bookmark.create(comment: "My favourite one", recipe: 1, category: brazilian)
+# Bookmark.create(comment: "Perfect for Friday night", recipe: 2, category: naughty)
+# Bookmark.create(comment: "Too healthy", recipe: recipe2, category: italian)

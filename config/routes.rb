@@ -7,5 +7,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :categories, except: [:edit, :update]
+  resources :categories, except: %i[:edit, :update] do
+    resources :bookmarks, only: [:new, :create]
+  end
+
+  resources :bookmarks, only: [:destroy]
+
+# Added %i symbol that TA suggested
 end
