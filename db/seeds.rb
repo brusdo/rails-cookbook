@@ -10,6 +10,7 @@
 
 Recipe.destroy_all
 
+
 brazilian = Category.create(name: 'Brazilin')
 italian = Category.create(name: 'Italian')
 naughty = Category.create(name: 'Naughty')
@@ -24,21 +25,21 @@ feijoada = Recipe.create(
 pasta = Recipe.create(
   name: 'Delicious Pasta',
   description: "Made by the MamaMade by the MamaMade by the MamaMade by the Mama",
-  image_url: "https://cheapandcheerfulcooking.com/vegan-feijoada-brazilian-national-dish/",
+  image_url: "https://www.everydaycheapskate.com/budget-pasta-mama-cheap-copycat-hugos/",
   rating: 8.5
 )
 
 pizza = Recipe.create(
   name: 'Spicy Pizza',
   description: "Perfect for Friday nightPerfect for Friday nightPerfect for Friday",
-  image_url: "https://cheapandcheerfulcooking.com/vegan-feijoada-brazilian-national-dish/",
+  image_url: "https://www.naplesinsider.com/en/e/best-pizzerias-naples-italy-2",
   rating: 7.5
 )
 
 salad = Recipe.create(
   name: 'Fresh Salad',
   description: "Super yummy salaaaadSuper yummy salaaaadSuper yummy salaaaadSuper yummy",
-  image_url: "https://cheapandcheerfulcooking.com/vegan-feijoada-brazilian-national-dish/",
+  image_url: "https://www.bbcgoodfood.com/recipes/collection/salad-recipes",
   rating: 6.5
 )
 
