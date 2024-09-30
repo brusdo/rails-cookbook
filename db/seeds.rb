@@ -19,7 +19,7 @@ feijoada = Recipe.create(
   name: 'Delicious Feijoada',
   description: "SUPER YummySUPER YummySUPER YummySUPER YummySUPER YummySUPER YummySUPER Yummy",
   image_url: "https://cheapandcheerfulcooking.com/vegan-feijoada-brazilian-national-dish/",
-  rating: 9.5
+  rating: 9.5,
 )
 
 pasta = Recipe.create(
@@ -42,5 +42,3 @@ salad = Recipe.create(
   image_url: "https://www.bbcgoodfood.com/recipes/collection/salad-recipes",
   rating: 6.5
 )
-
-puts "data created!"
