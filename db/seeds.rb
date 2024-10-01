@@ -7,43 +7,43 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
+Bookmark.destroy_all
+Category.destroy_all
 Recipe.destroy_all
 
 
-brazilian = Category.create(name: 'Brazilin')
+brazilian = Category.create(name: 'Brazillian')
 italian = Category.create(name: 'Italian')
-naughty = Category.create(name: 'Naughty')
+calorific = Category.create(name: 'Calorific')
 
 feijoada = Recipe.create(
   name: 'Delicious Feijoada',
   description: "SUPER YummySUPER YummySUPER YummySUPER YummySUPER YummySUPER YummySUPER Yummy",
-  image_url: "https://cheapandcheerfulcooking.com/vegan-feijoada-brazilian-national-dish/",
+  image_url: "feijoada.jpg",
   rating: 9.5,
 )
 
 pasta = Recipe.create(
   name: 'Delicious Pasta',
   description: "Made by the MamaMade by the MamaMade by the MamaMade by the Mama",
-  image_url: "https://www.everydaycheapskate.com/budget-pasta-mama-cheap-copycat-hugos/",
+  image_url: "pasta.jpg",
   rating: 8.5
 )
 
 pizza = Recipe.create(
   name: 'Spicy Pizza',
   description: "Perfect for Friday nightPerfect for Friday nightPerfect for Friday",
-  image_url: "https://www.naplesinsider.com/en/e/best-pizzerias-naples-italy-2",
+  image_url: "pizza.jpg",
   rating: 7.5
 )
 
 salad = Recipe.create(
   name: 'Fresh Salad',
   description: "Super yummy salaaaadSuper yummy salaaaadSuper yummy salaaaadSuper yummy",
-  image_url: "https://www.bbcgoodfood.com/recipes/collection/salad-recipes",
+  image_url: "salad.jpg",
   rating: 6.5
 )
 
-
-# Bookmark.create(comment: "My favourite one", recipe: 1, category: brazilian)
-# Bookmark.create(comment: "Perfect for Friday night", recipe: 2, category: naughty)
-# Bookmark.create(comment: "Too healthy", recipe: recipe2, category: italian)
+Bookmark.create(comment: "My favourite one", recipe: feijoada, category: brazilian)
+Bookmark.create(comment: "Perfect for Friday night", recipe: pizza, category: calorific)
+Bookmark.create(comment: "Too healthy", recipe: salad, category: italian)

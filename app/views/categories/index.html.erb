@@ -1,11 +1,25 @@
-<h1>View your categories here</h1>
-<ul>
-  <% @categories.each do |category| %>
-  <li>
-    <%= link_to category.name.capitalize, category_path(category) %>
-    <%= link_to 'Delete', category_path(category), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-  </li>
-  <% end %>
-</ul>
 
-<%= link_to 'Add New Category', new_category_path %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path "banner.jpg" %>);">
+  <div class="container">
+    <h1>Your Cookbook</h1>
+    <p>Post-modern asian fusion? Sous vide? So many fancy names.</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="d-flex justify-content-between py-4 align-items-center">
+    <h2>List of Categories</h2>
+    <%= link_to 'Add New Category', new_category_path, class: "btn btn-success" %>
+  </div>
+
+  <div class="row row-cols-3">
+  <% @categories.each do |category| %>
+    <div class="col">
+      <div class="card-category mb-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+        <%= link_to '🗑️', category_path(category), class: "btn btn-danger delete-btn", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+        <%= link_to category.name.capitalize, category_path(category), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

@@ -1,11 +1,22 @@
-<h1>Add your recipe to <%= @category.name %></h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path "banner.jpg" %>);">
+  <div class="container">
+    <h1>Add your recipe to <%= @category.name %></h1>
+  </div>
+</div>
 
-<%= simple_form_for [@category, @bookmark] do |f| %>
-  <%= f.association :recipe %>
-  <%= f.input :comment, placeholder: 'Add your comment here' %>
+<div class="container">
+  <div class="d-flex justify-content-between py-4 align-items-center">
+    <h2>List of Bookmarks</h2>
+    <div class="btn-group" role="group">
+      <%= link_to 'Back to Categories', category_path(@category), class: "btn btn-primary" %>
+    </div>
+  </div>
 
-  <%= f.submit 'Add Recipe' %>
-<% end %>
+  <%= simple_form_for [@category, @bookmark] do |f| %>
+    <%= f.association :recipe %>
+    <%= f.input :comment, placeholder: 'Add your comment here' %>
 
-<%= link_to 'Back to Category', category_path(@category) %>
-<%# <%= link_to 'Add New Category', new_category_path %>
+    <%= f.submit 'Add Recipe' %>
+  <% end %>
+
+</div>
