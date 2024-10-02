@@ -14,67 +14,73 @@ Recipe.destroy_all
 require 'json'
 require 'open-uri'
 
-def recipe_builder(id)
+def recipe_builder(id, category)
   url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
   recipe_serialized = URI.open(url).read
   recipe = JSON.parse(recipe_serialized)
 
   meal = recipe["meals"].first
 
-    # Create a Recipe with the fetched data
-    Recipe.create(
-      name: meal["strMeal"],
-      description: meal["strInstructions"],
-      image_url: meal["strMealThumb"],
-      rating: rand(1..10)
-    )
+  new_recipe = Recipe.create(
+    name: meal["strMeal"],
+    description: meal["strInstructions"].gsub('\n', '<br />'),
+    image_url: meal["strMealThumb"],
+    rating: 0.0
+  )
+
+  Bookmark.create(comment: "Test comments", recipe: new_recipe, category: category)
 end
 
 categories = ["Breakfast", "Pasta", "Seafood", "Dessert"]
 
 categories.each do |category|
+  new_category = Category.create(name: category)
+
   url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=#{category}"
   meals_serialized = URI.open(url).read
   meals = JSON.parse(meals_serialized)
 
   meals["meals"].each do |meal|
     p "Processing Recipe ID: #{meal["idMeal"]}"
-    recipe_builder(meal["idMeal"])
+    recipe_builder(meal["idMeal"], new_category)
   end
 end
 
-brazilian = Category.create(name: 'Brazillian')
-italian = Category.create(name: 'Italian')
-calorific = Category.create(name: 'Calorific')
 
-feijoada = Recipe.create(
-  name: 'Delicious Feijoada',
-  description: "SUPER YummySUPER YummySUPER YummySUPER YummySUPER YummySUPER YummySUPER Yummy",
-  image_url: "feijoada.jpg",
-  rating: 9.5,
-)
 
-pasta = Recipe.create(
-  name: 'Delicious Pasta',
-  description: "Made by the MamaMade by the MamaMade by the MamaMade by the Mama",
-  image_url: "pasta.jpg",
-  rating: 8.5
-)
 
-pizza = Recipe.create(
-  name: 'Spicy Pizza',
-  description: "Perfect for Friday nightPerfect for Friday nightPerfect for Friday",
-  image_url: "pizza.jpg",
-  rating: 7.5
-)
+# brazilian = Category.create(name: 'Brazillian')
+# italian = Category.create(name: 'Italian')
+# calorific = Category.create(name: 'Calorific')
 
-salad = Recipe.create(
-  name: 'Fresh Salad',
-  description: "Super yummy salaaaadSuper yummy salaaaadSuper yummy salaaaadSuper yummy",
-  image_url: "salad.jpg",
-  rating: 6.5
-)
+# feijoada = Recipe.create(
+#   name: 'Delicious Feijoada',
+#   description: "SUPER YummySUPER YummySUPER YummySUPER YummySUPER YummySUPER YummySUPER Yummy",
+#   image_url: "feijoada.jpg",
+#   rating: 9.5,
+# )
 
-Bookmark.create(comment: "My favourite one", recipe: feijoada, category: brazilian)
-Bookmark.create(comment: "Perfect for Friday night", recipe: pizza, category: calorific)
-Bookmark.create(comment: "Too healthy", recipe: salad, category: italian)
+# pasta = Recipe.create(
+#   name: 'Delicious Pasta',
+#   description: "Made by the MamaMade by the MamaMade by the MamaMade by the Mama",
+#   image_url: "pasta.jpg",
+#   rating: 8.5
+# )
+
+# pizza = Recipe.create(
+#   name: 'Spicy Pizza',
+#   description: "Perfect for Friday nightPerfect for Friday nightPerfect for Friday",
+#   image_url: "pizza.jpg",
+#   rating: 7.5
+# )
+
+# salad = Recipe.create(
+#   name: 'Fresh Salad',
+#   description: "Super yummy salaaaadSuper yummy salaaaadSuper yummy salaaaadSuper yummy",
+#   image_url: "salad.jpg",
+#   rating: 6.5
+# )
+
+# Bookmark.create(comment: "My favourite one", recipe: feijoada, category: brazilian)
+# Bookmark.create(comment: "Perfect for Friday night", recipe: pizza, category: calorific)
+# Bookmark.create(comment: "Too healthy", recipe: salad, category: italian)
