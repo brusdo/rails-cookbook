@@ -11,7 +11,6 @@ Bookmark.destroy_all
 Category.destroy_all
 Recipe.destroy_all
 
-
 brazilian = Category.create(name: 'Brazillian')
 italian = Category.create(name: 'Italian')
 calorific = Category.create(name: 'Calorific')
