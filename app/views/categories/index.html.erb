@@ -19,8 +19,8 @@
         <% else %>
           <div class="card-category mb-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
         <% end %>
-          <%= link_to '🗑️', category_path(category), class: "btn btn-danger delete-btn", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-          <%= link_to category.name.capitalize, category_path(category), class: "btn btn-primary" %>
+          <%= link_to '🗑️', category_path(category), class: "btn btn-dark delete-btn", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+          <%= link_to category.name.capitalize, category_path(category), class: "btn btn-success" %>
         </div>
       </div>
     <% end %>

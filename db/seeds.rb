@@ -11,6 +11,38 @@ Bookmark.destroy_all
 Category.destroy_all
 Recipe.destroy_all
 
+require 'json'
+require 'open-uri'
+
+def recipe_builder(id)
+  url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{id}"
+  recipe_serialized = URI.open(url).read
+  recipe = JSON.parse(recipe_serialized)
+
+  meal = recipe["meals"].first
+
+    # Create a Recipe with the fetched data
+    Recipe.create(
+      name: meal["strMeal"],
+      description: meal["strInstructions"],
+      image_url: meal["strMealThumb"],
+      rating: rand(1..10)
+    )
+end
+
+categories = ["Breakfast", "Pasta", "Seafood", "Dessert"]
+
+categories.each do |category|
+  url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=#{category}"
+  meals_serialized = URI.open(url).read
+  meals = JSON.parse(meals_serialized)
+
+  meals["meals"].each do |meal|
+    p "Processing Recipe ID: #{meal["idMeal"]}"
+    recipe_builder(meal["idMeal"])
+  end
+end
+
 brazilian = Category.create(name: 'Brazillian')
 italian = Category.create(name: 'Italian')
 calorific = Category.create(name: 'Calorific')
